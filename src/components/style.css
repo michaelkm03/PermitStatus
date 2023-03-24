@@ -8,6 +8,7 @@
 :root{
     --color-dark: #000000;
     --color-light: #dfdfdf;
+    --color-highlight: #fffb00;
 }
 
 #main{
@@ -18,7 +19,7 @@
 }
 
 body{
-    background-image:url('/public/sunset6.jpeg');
+    background-image:url('/public/mountain-landscape.jpg');
     background-attachment:fixed;
     background-repeat: no-repeat;
     background-size: cover;
@@ -76,7 +77,14 @@ body{
 
 #profile .flex .item{
     display: flex;
+    width: 100%;
+    height: 100%;
     align-items: center;
+    border: 3px solid var(--color-dark);
+    padding: 0em .4em;
+    border-radius: 40px;
+    background-color: rgba(255, 255, 255, 0.60);
+    cursor: pointer;
 }
 
 #profile .flex img{
@@ -89,5 +97,5 @@ body{
 }
 
 .text-light{
-    color: var(--color-light);
+    color: var(--color-dark);
 }

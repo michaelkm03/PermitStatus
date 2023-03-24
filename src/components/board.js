@@ -5,11 +5,11 @@ import { Leaderboard } from './database';
 export default function Board() {
 
     // set default state, landing page
-    const [location, setLocation] = useState("California");
+    const [state, setState] = useState("All");
 
   const handleClick = (e) => {
      
-    setLocation(e.target.dataset.id)
+    setState(e.target.dataset.id)
   }
 
   return (
@@ -17,14 +17,13 @@ export default function Board() {
         <h1 className='leaderboard'>Most Recent Openings</h1>
 
         <div className="duration">
-            <button onClick={handleClick} data-id='California'>California</button>
-            <button onClick={handleClick} data-id='Washington'>Washington</button>
-            <button onClick={handleClick} data-id='Utah'>Utah</button>
-            <button onClick={handleClick} data-id='Montana'>Montana</button>
+            <button onClick={handleClick} data-id='["AK", "CA", "WA", "OR"]'>Pacific Northwest</button>
+            <button onClick={handleClick} data-id='["UT", "CO", "AZ", "OR"]'>Southwest</button>
+            <button onClick={handleClick} data-id='["UT", "MT", "WY", "ID"]'>Mountain West</button>
             <button onClick={handleClick} data-id='All'>All</button>
         </div>
 
-        <Profiles Leaderboard={between(Leaderboard, location)}></Profiles>
+        <Profiles Leaderboard={between(Leaderboard, state)}></Profiles>
 
     </div>
   )
@@ -32,18 +31,18 @@ export default function Board() {
 
 
 
-function between(data, location, between){
+function between(data, state, between){
     const today = new Date();
     const previous = new Date(today);
     previous.setDate(previous.getDate() - (between + 1));
 
     let filter = data.filter(val => {
         let userDate = new Date(val.dt);
-        if (val.location === location) return val;
+        if (state.includes(val.state) || state === "All") return val;
     })
 
-    // sort with descending order
+    // sort date with descending order
     return filter.sort(function(a,b){
-        return b.dt.localeCompare(a.dt);
+        return b.next_available_date.localeCompare(a.next_available_date);
       });
 }

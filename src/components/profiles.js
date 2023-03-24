@@ -21,18 +21,18 @@ function Item(data){
                     <div className="flex" key={index}>
                         <div className="item">
                             <img src={value.img} alt="" />
-            
-                            <div className="info" /*onClick={e => linkToPermit()}*/>
-                                {/* How to make div clickable?
-                                <Link href="www.google.com"></Link> */}
-                                <h3 className='name text-light'>{value.name}</h3>    
-                                <h4 className='name text-light'>{value.location}</h4>    
-                                <h4 className='name text-light'>{value.count}</h4>    
-                            </div>                
+                            <a href={"https://www.recreation.gov/permits/" + value.permit_id} target='_blank'>
+                                <div id="thediv" 
+                                /> 
+                                <div className="info" >
+                                    <h3 className='name text-light'>{value.name}</h3>    
+                                    <h5 className='name text-light'>{value.org_name} | {value.entrance_name}</h5>    
+                                    <h5 className='name text-light'>{value.city}, {value.state}</h5>    
+                                    <h5 className='name text-light'>Next Available: {value.next_available_date}</h5>    
+                                    <h5 className='name text-light'>Permits: {value.count}</h5>    
+                            </div>   
+                            </a>             
                         </div>
-                        {/* <div className="item">
-                            <span>{value.count}</span>
-                        </div> */}
                     </div>
                     )
                 )
